@@ -33,12 +33,12 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "src/"
+            "Chess\\": "src/Chess"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "App\\Tests\\": "tests/"
+            "Chess\\Tests\\": "tests/Chess"
         }
     },
     "replace": {
