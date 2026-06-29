@@ -13,25 +13,19 @@ final class Square
         private readonly string $file,
         private readonly int $rank,
     ) {
-        if (!in_array($file, self::FILES, strict: true)) {
-            throw new \InvalidArgumentException(
-                sprintf('Invalid file "%s". Must be a letter between a and h.', $file)
-            );
+        if (!\in_array($file, self::FILES, strict: true)) {
+            throw new \InvalidArgumentException(\sprintf('Invalid file "%s". Must be a letter between a and h.', $file));
         }
 
-        if (!in_array($rank, self::RANKS, strict: true)) {
-            throw new \InvalidArgumentException(
-                sprintf('Invalid rank "%d". Must be a number between 1 and 8.', $rank)
-            );
+        if (!\in_array($rank, self::RANKS, strict: true)) {
+            throw new \InvalidArgumentException(\sprintf('Invalid rank "%d". Must be a number between 1 and 8.', $rank));
         }
     }
 
     public static function fromString(string $notation): self
     {
-        if (strlen($notation) !== 2) {
-            throw new \InvalidArgumentException(
-                sprintf('Invalid square notation "%s". Expected format: e4.', $notation)
-            );
+        if (2 !== \strlen($notation)) {
+            throw new \InvalidArgumentException(\sprintf('Invalid square notation "%s". Expected format: e4.', $notation));
         }
 
         return new self($notation[0], (int) $notation[1]);
@@ -55,6 +49,6 @@ final class Square
 
     public function toString(): string
     {
-        return $this->file . $this->rank;
+        return $this->file.$this->rank;
     }
 }
