@@ -10,8 +10,4 @@ framework:
 
         transports:
             sync: 'sync://'
-
-        routing:
-            'Chess\Application\Command\StartGame\StartGameCommand': sync
-            'Chess\Application\Command\PlayMove\PlayMoveCommand': sync
-            'Chess\Application\Query\GetGameState\GetGameStateQuery': sync
+            
