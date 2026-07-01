@@ -1,0 +1,17 @@
+framework:
+    messenger:
+        default_bus: command.bus
+
+        buses:
+            command.bus:
+                middleware: []
+            query.bus:
+                middleware: []
+
+        transports:
+            sync: 'sync://'
+
+        routing:
+            'Chess\Application\Command\StartGame\StartGameCommand': sync
+            'Chess\Application\Command\PlayMove\PlayMoveCommand': sync
+            'Chess\Application\Query\GetGameState\GetGameStateQuery': sync
