@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Chess\Domain\Model;
 
+use Chess\Domain\Service\MoveValidator;
 use Chess\Domain\Value\Color;
 use Chess\Domain\Value\GameId;
 use Chess\Domain\Value\Move;
@@ -28,7 +29,7 @@ final class Game
         );
     }
 
-    public function play(Move $move): void
+    public function play(Move $move, MoveValidator $validator): void
     {
         if ($this->isOver) {
             throw new \DomainException('Cannot play a move on a finished game.');
@@ -43,6 +44,8 @@ final class Game
         if (!$piece->isColor($this->currentTurn)) {
             throw new \DomainException(\sprintf('It is %s\'s turn.', $this->currentTurn->name));
         }
+
+        $validator->validate($move, $this->board);
 
         $this->board->movePiece($move->from(), $move->to());
         $this->currentTurn = $this->currentTurn->opposite();
